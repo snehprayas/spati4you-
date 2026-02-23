@@ -4,326 +4,286 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dien Späti – Späti 4 You Berlin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --neon-pink: #ff007f;
-            --neon-blue: #00f2ff;
-            --neon-green: #39ff14;
-            --dark-bg: #050505;
-            --card-bg: #121212;
+            --spaeti-pink: #ff2e88;
+            --spaeti-blue: #00d4ff;
+            --light-bg: #f8f9fa;
+            --text-dark: #2d3436;
         }
 
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: var(--dark-bg);
-            color: white;
-            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            overflow-x: hidden;
         }
 
-        /* Header & Search */
-        header {
-            background: rgba(0, 0, 0, 0.95);
-            padding: 20px;
+        /* SPLASH SCREEN */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 5000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            border-bottom: 3px solid var(--neon-pink);
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .splash-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5rem;
+            font-weight: 800;
+            color: var(--spaeti-pink);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .service-options {
+            display: flex;
+            gap: 20px;
+        }
+
+        .service-card {
+            padding: 30px;
+            width: 200px;
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--spaeti-blue);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-card i { font-size: 40px; display: block; margin-bottom: 10px; }
+
+        /* MAIN APP HEADER */
+        header {
+            background: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .brand-top {
-            font-size: 38px;
-            font-weight: 900;
-            color: var(--neon-pink);
-            text-shadow: 0 0 20px var(--neon-pink);
-            margin-bottom: 15px;
-        }
+        .nav-brand { font-family: 'Montserrat', sans-serif; font-weight: 800; color: var(--spaeti-pink); font-size: 24px; }
 
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto 15px;
-        }
-
-        #searchInput {
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: 25px;
-            border: 2px solid var(--neon-blue);
-            background: #1a1a1a;
-            color: white;
-            font-size: 16px;
-            outline: none;
-        }
-
-        /* Category Tabs */
-        .category-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
-
-        .tab {
-            padding: 10px 20px;
-            background: #222;
-            border: 1px solid #444;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        .tab.active {
-            background: var(--neon-blue);
-            color: black;
-            box-shadow: 0 0 15px var(--neon-blue);
-        }
-
-        /* Main Content */
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        .product-grid {
+        /* CATEGORY GRID (HOME VIEW) */
+        #category-menu {
+            padding: 40px 5%;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
 
-        .product-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            border: 1px solid #333;
-            transition: transform 0.2s;
-        }
-
-        .product-card:hover {
-            transform: scale(1.03);
-            border-color: var(--neon-pink);
-        }
-
-        .product-card img {
-            width: 100%;
+        .cat-box {
             height: 150px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: 0.2s;
+            border-bottom: 5px solid var(--spaeti-blue);
+        }
+
+        .cat-box:hover { background: var(--spaeti-blue); color: white; transform: scale(1.02); }
+
+        /* PRODUCT VIEW */
+        #product-view { display: none; padding: 20px 5%; }
+        .back-btn { cursor: pointer; color: var(--spaeti-pink); font-weight: bold; margin-bottom: 20px; display: inline-block; }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
             object-fit: contain;
             margin-bottom: 15px;
-            background: white; /* Helpful for png logos */
+        }
+
+        .price { font-weight: bold; font-size: 20px; color: #2ecc71; margin: 10px 0; display: block; }
+
+        .qty-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
             border-radius: 8px;
         }
 
-        .price {
-            color: var(--neon-green);
-            font-size: 18px;
-            font-weight: bold;
-            display: block;
-            margin: 10px 0;
-        }
-
-        /* Cart Floating Button */
-        .cart-btn {
+        /* CART BUTTON */
+        .cart-bar {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--neon-pink);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            box-shadow: 0 0 20px var(--neon-pink);
-            cursor: pointer;
-            z-index: 999;
-            border: none;
-        }
-
-        /* Checkout Overlay */
-        #checkoutOverlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .checkout-box {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid var(--neon-blue);
-            width: 90%;
-            max-width: 500px;
-        }
-
-        input, select {
+            bottom: 0;
             width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            background: #000;
-            border: 1px solid #444;
+            background: var(--spaeti-pink);
             color: white;
-            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            display: none;
         }
 
-        footer {
-            background: #000;
-            padding: 40px;
-            text-align: center;
-            border-top: 1px solid #333;
-        }
+        /* SEARCHBAR */
+        .search-wrap { padding: 20px 5%; background: white; }
+        #searchBox { width: 100%; padding: 15px; border-radius: 30px; border: 1px solid #ddd; outline: none; }
     </style>
 </head>
 <body>
 
+<div id="splash-screen">
+    <div class="splash-logo">SPÄTI 4 YOU</div>
+    <p style="font-size: 1.2rem; margin-bottom: 40px; color: #666;">Willkommen bei Berlins bestem Späti Service</p>
+    <div class="service-options">
+        <div class="service-card" onclick="startApp('Collect')">
+            <span>🏪</span>
+            <h3>Abholung</h3>
+            <p>Self-Collect</p>
+        </div>
+        <div class="service-card" onclick="startApp('Delivery')">
+            <span>🛵</span>
+            <h3>Lieferung</h3>
+            <p>To Home</p>
+        </div>
+    </div>
+</div>
+
 <header>
-    <div class="brand-top">DIEN SPÄTI</div>
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search drinks, snacks, tobacco..." onkeyup="filterProducts()">
-    </div>
-    <div class="category-tabs" id="tabContainer">
-        <div class="tab active" onclick="filterCategory('All', this)">All</div>
-        <div class="tab" onclick="filterCategory('Getränke', this)">Getränke</div>
-        <div class="tab" onclick="filterCategory('Alkohol', this)">Alkohol</div>
-        <div class="tab" onclick="filterCategory('Tabak', this)">Tabak</div>
-        <div class="tab" onclick="filterCategory('Snacks', this)">Snacks</div>
-        <div class="tab" onclick="filterCategory('Special', this)">Special</div>
-    </div>
+    <div class="nav-brand">DIEN SPÄTI</div>
+    <div id="service-status" style="font-size: 12px; font-weight: bold;"></div>
 </header>
 
-<div class="container">
-    <div class="product-grid" id="productGrid"></div>
+<div class="search-wrap">
+    <input type="text" id="searchBox" placeholder="Suchen Sie nach Fritz Kola, Marlboro, Chips..." onkeyup="handleSearch()">
 </div>
 
-<button class="cart-btn" onclick="toggleCheckout()">🛒 WARENKORB & KASSE</button>
-
-<div id="checkoutOverlay">
-    <div class="checkout-box">
-        <h2 style="color:var(--neon-pink)">Kasse / Checkout</h2>
-        <div id="orderSummary" style="margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px;"></div>
-        <input type="text" id="userName" placeholder="Vollständiger Name">
-        <input type="text" id="userAddress" placeholder="Lieferadresse in Berlin">
-        <select id="branch">
-            <option>Warschauer Str. 86 (Branch 1)</option>
-            <option>Revaler Str. 99 (Branch 2)</option>
-            <option>Boxhagener Str. (Branch 3)</option>
-            <option>Skalitzer Str. (Branch 4)</option>
-            <option>Sonnenallee (Branch 5)</option>
-        </select>
-        <button class="cart-btn" style="position:static; width:100%; margin-top:10px;" onclick="confirmOrder()">JETZT KOSTENPFLICHTIG BESTELLEN</button>
-        <p onclick="toggleCheckout()" style="text-align:center; cursor:pointer; margin-top:15px; color:#888;">Zurück zum Shop</p>
-    </div>
+<div id="category-menu">
+    <div class="cat-box" onclick="showCategory('Getränke')">🥤 Getränke</div>
+    <div class="cat-box" onclick="showCategory('Alkohol')">🍺 Alkohol</div>
+    <div class="cat-box" onclick="showCategory('Tabak')">🚬 Tabak</div>
+    <div class="cat-box" onclick="showCategory('Snacks')">🥨 Snacks & Sweets</div>
+    <div class="cat-box" onclick="showCategory('Special')">✨ Special</div>
 </div>
 
-<footer>
-    <div style="color:var(--neon-blue); font-size: 20px; font-weight: bold;">SPÄTI 4 YOU – BERLIN</div>
-    <p>5 Locations: Friedrichshain, Kreuzberg, Neukölln</p>
-    <p>24/7 Delivery | No Tobacco Discounts per Law</p>
-</footer>
+<div id="product-view">
+    <div class="back-btn" onclick="goHome()">← Zurück zu Kategorien</div>
+    <h2 id="current-cat-name">Kategorie</h2>
+    <div class="product-grid" id="product-grid"></div>
+</div>
+
+<div class="cart-bar" id="cart-bar" onclick="alert('Proceeding to Checkout...')">
+    WARENKORB ANZEIGEN (<span id="cart-count">0</span>)
+</div>
 
 <script>
 const products = [
-    // Getränke
     { name: "Fritz Kola Classic 0.33l", price: 2.50, cat: "Getränke", img: "https://www.fritz-kola.com/storage/app/media/products/fritz-kola/flasche_fritz-kola_033l.png" },
-    { name: "Coca Cola Classic 0.5l", price: 2.30, cat: "Getränke", img: "https://www.coca-cola.com/content/dam/oneteam/de/de/product/coca-cola-classic-05.png" },
-    { name: "Afri Cola", price: 2.40, cat: "Getränke", img: "https://afri-cola.de/images/produkte/afri_cola_033_glass.png" },
-    { name: "Volvic Naturelle 1.5l", price: 1.90, cat: "Getränke", img: "https://www.volvic.de/sites/g/files/isvmsu1046/f/styles/product_image/public/2021-03/Volvic_Naturelle_1%2C5L_0.png" },
-    
-    // Alkohol
+    { name: "Coca Cola 0.5l", price: 2.30, cat: "Getränke", img: "https://shop.rewe.de/media/products/224/224010/224010_0_1583484000000.png" },
     { name: "Augustiner Helles", price: 2.10, cat: "Alkohol", img: "https://www.getraenkedienst.com/media/catalog/product/a/u/augustiner-lagerbier-hell-05l.png" },
-    { name: "Heineken 0.33l", price: 2.40, cat: "Alkohol", img: "https://www.heineken.com/media-eu/01hbm9v5p9j3d4b4n8m6k8m8.png" },
-    { name: "Corona Extra", price: 2.90, cat: "Alkohol", img: "https://www.corona.com/sites/g/files/pno001/f/styles/product_image/public/2022-03/Corona_Extra_Bottle.png" },
-    
-    // Tabak
-    { name: "Marlboro Red (10er)", price: 8.50, cat: "Tabak", img: "https://gzhls.at/i/23/21/2321.jpg" },
-    { name: "American Spirit Blue", price: 8.50, cat: "Tabak", img: "https://pouch.jti.com/sites/default/files/styles/product_large/public/2020-05/NAS_Blue.png" },
-    { name: "Lucky Strike Red", price: 8.00, cat: "Tabak", img: "https://www.tabak-boerse24.de/media/image/bf/4e/44/lucky-strike-red.jpg" },
-
-    // Snacks
+    { name: "Heineken Bottle", price: 2.40, cat: "Alkohol", img: "https://www.heineken.com/media-eu/01hbm9v5p9j3d4b4n8m6k8m8.png" },
+    { name: "Marlboro Red Box", price: 8.50, cat: "Tabak", img: "https://images.tabak-boerse24.de/item/images/100001/full/Marlboro-Red-Zigaretten.jpg" },
+    { name: "American Spirit Blue", price: 8.50, cat: "Tabak", img: "https://www.tabak-boerse24.de/media/image/24/0d/17/american-spirit-blue.jpg" },
     { name: "Lays Paprika Chips", price: 2.80, cat: "Snacks", img: "https://pouch.pepsico.com/sites/default/files/styles/product_large/public/2022-01/Lays_Paprika.png" },
-    { name: "Milka Alpenmilch", price: 1.50, cat: "Snacks", img: "https://www.milka.de/produkte/alpenmilch.png" },
     { name: "Kinder Bueno", price: 1.20, cat: "Snacks", img: "https://www.ferrero.de/sites/ferrero_de/files/styles/product_image/public/2021-03/Kinder_Bueno.png" },
-    
-    // Special
-    { name: "Lachgas / FastGas 640g", price: 29.90, cat: "Special", img: "https://fast-gas.com/wp-content/uploads/2021/04/FastGas-Cylinder-640g.png" }
+    { name: "Lachgas Cylinder 640g", price: 29.90, cat: "Special", img: "https://fast-gas.com/wp-content/uploads/2021/04/FastGas-Cylinder-640g.png" }
 ];
 
 let cart = {};
-let currentCategory = 'All';
 
-function renderProducts(filterText = '') {
-    const grid = document.getElementById('productGrid');
+function startApp(mode) {
+    document.getElementById('splash-screen').style.transform = 'translateY(-100%)';
+    document.getElementById('service-status').innerText = mode === 'Collect' ? '🏪 ABHOLUNG' : '🛵 LIEFERUNG';
+}
+
+function showCategory(cat) {
+    document.getElementById('category-menu').style.display = 'none';
+    document.getElementById('product-view').style.display = 'block';
+    document.getElementById('current-cat-name').innerText = cat;
+    renderProducts(cat);
+}
+
+function goHome() {
+    document.getElementById('category-menu').style.display = 'grid';
+    document.getElementById('product-view').style.display = 'none';
+}
+
+function renderProducts(catFilter = 'All', searchTerm = '') {
+    const grid = document.getElementById('product-grid');
     grid.innerHTML = '';
     
-    const filtered = products.filter(p => {
-        const matchesSearch = p.name.toLowerCase().includes(filterText.toLowerCase());
-        const matchesCat = (currentCategory === 'All' || p.cat === currentCategory);
-        return matchesSearch && matchesCat;
-    });
-
-    filtered.forEach(p => {
+    products.filter(p => {
+        const matchesCat = catFilter === 'All' || p.cat === catFilter;
+        const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase());
+        return matchesCat && matchesSearch;
+    }).forEach(p => {
         grid.innerHTML += `
-            <div class="product-card">
-                <img src="${p.img}" onerror="this.src='https://via.placeholder.com/150?text=Product'">
+            <div class="card">
+                <img src="${p.img}" onerror="this.src='https://via.placeholder.com/150'">
                 <h4>${p.name}</h4>
                 <span class="price">${p.price.toFixed(2)}€</span>
-                <select onchange="addToCart('${p.name}', this.value)">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="5">5</option>
+                <select class="qty-select" onchange="updateCart('${p.name}', this.value)">
+                    <option value="0">Auswählen</option>
+                    <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="5">5</option>
                 </select>
             </div>
         `;
     });
 }
 
-function filterCategory(cat, el) {
-    currentCategory = cat;
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-    renderProducts(document.getElementById('searchInput').value);
-}
-
-function filterProducts() {
-    renderProducts(document.getElementById('searchInput').value);
-}
-
-function addToCart(name, qty) {
-    if (parseInt(qty) > 0) cart[name] = parseInt(qty);
+function updateCart(name, qty) {
+    if(parseInt(qty) > 0) cart[name] = parseInt(qty);
     else delete cart[name];
-}
-
-function toggleCheckout() {
-    const overlay = document.getElementById('checkoutOverlay');
-    const summary = document.getElementById('orderSummary');
-    overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
     
-    let html = '<ul>';
-    let total = 0;
-    for(let item in cart) {
-        const p = products.find(prod => prod.name === item);
-        html += `<li>${item} x ${cart[item]}</li>`;
-        total += p.price * cart[item];
+    const count = Object.values(cart).reduce((a, b) => a + b, 0);
+    document.getElementById('cart-count').innerText = count;
+    document.getElementById('cart-bar').style.display = count > 0 ? 'block' : 'none';
+}
+
+function handleSearch() {
+    const term = document.getElementById('searchBox').value;
+    if(term.length > 0) {
+        document.getElementById('category-menu').style.display = 'none';
+        document.getElementById('product-view').style.display = 'block';
+        document.getElementById('current-cat-name').innerText = "Suchergebnisse";
+        renderProducts('All', term);
+    } else {
+        goHome();
     }
-    html += `</ul><strong>Total: ${total.toFixed(2)}€</strong>`;
-    summary.innerHTML = html;
 }
-
-function confirmOrder() {
-    alert("Bestellung eingegangen! Dein Späti 4 You Fahrer macht sich auf den Weg.");
-    location.reload();
-}
-
-renderProducts();
 </script>
+
 </body>
 </html>

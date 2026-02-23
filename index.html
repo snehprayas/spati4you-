@@ -3,311 +3,203 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dien Späti – Späti 4 You</title>
+<title>Dien Späti – Official</title>
 <style>
-body {
- margin: 0;
- font-family: Arial, sans-serif;
- background: #0b0b0f;
- color: white;
-}
-header {
- background: black;
- padding: 15px;
- display: flex;
- justify-content: space-between;
- align-items: center;
- position: sticky;
- top: 0;
-}
-.header-title { font-size: 24px; color: #ff2e88; text-shadow: 0 0 10px #ff2e88; }
-header .open { color: #00ff99; font-weight: bold; }
+    :root {
+        --neon-pink: #ff2e88;
+        --neon-blue: #00d4ff;
+        --neon-green: #00ff99;
+        --dark-bg: #0b0b0f;
+    }
+    body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: var(--dark-bg); color: white; overflow-x: hidden; }
+    
+    /* Header & Branding */
+    header { background: black; padding: 20px; text-align: center; border-bottom: 2px solid var(--neon-pink); position: sticky; top: 0; z-index: 100; }
+    .brand-top { font-size: 32px; font-weight: bold; color: var(--neon-pink); text-shadow: 0 0 15px var(--neon-pink); letter-spacing: 2px; }
+    
+    .category-title { grid-column: 1 / -1; color: var(--neon-blue); border-bottom: 1px solid #333; margin-top: 30px; padding-bottom: 5px; font-size: 24px; }
 
-.hero {
- text-align: center;
- padding: 60px 20px;
-}
-.hero h1 { font-size: 38px; color: #ff2e88; text-shadow: 0 0 20px #ff2e88; }
-.hero p { font-size: 18px; margin: 10px 0; }
+    .hero { text-align: center; padding: 40px 20px; background: linear-gradient(to bottom, #000, #0b0b0f); }
+    .offer-banner { background: #1a1a24; padding: 15px; text-align: center; color: var(--neon-pink); font-weight: bold; font-size: 20px; border-top: 1px solid var(--neon-pink); border-bottom: 1px solid var(--neon-pink); }
 
-.button {
- display: inline-block;
- padding: 12px 20px;
- background: #ff2e88;
- color: white;
- border-radius: 5px;
- text-decoration: none;
- margin: 8px;
- box-shadow: 0 0 15px #ff2e88;
- cursor: pointer;
-}
-.button:hover { background: #00d4ff; box-shadow: 0 0 15px #00d4ff; }
+    /* Product Grid */
+    .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: auto; }
+    .product-card { background: #141418; padding: 15px; border-radius: 12px; text-align: center; transition: 0.3s; border: 1px solid #222; }
+    .product-card:hover { border-color: var(--neon-blue); transform: translateY(-5px); }
+    .product-card img { width: 100%; height: 120px; object-fit: contain; margin-bottom: 10px; border-radius: 5px; }
+    .product-card h4 { font-size: 14px; margin: 5px 0; height: 35px; overflow: hidden; }
+    .price-tag { color: var(--neon-green); font-weight: bold; margin-bottom: 10px; display: block; }
+    
+    select { background: #222; color: white; border: 1px solid var(--neon-blue); padding: 5px; border-radius: 4px; width: 100%; cursor: pointer; }
 
-.offer {
- text-align: center;
- background: #1a1a24;
- padding: 30px 15px;
- font-size: 22px;
- color: #ff2e88;
- text-shadow: 0 0 15px #ff2e88;
-}
+    /* Cart Sidebar */
+    .cart { position: fixed; right: 0; top: 0; width: 320px; height: 100%; background: #0d0d12; border-left: 2px solid var(--neon-pink); padding: 20px; transform: translateX(110%); transition: .4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000; overflow-y: auto; }
+    .cart.open { transform: translateX(0); }
+    .cart h2 { color: var(--neon-pink); margin-top: 0; }
+    .cart-item { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid #222; }
+    .cart-total { font-size: 20px; color: var(--neon-green); margin: 20px 0; padding-top: 10px; border-top: 2px solid var(--neon-pink); }
 
-.products {
- display: grid;
- grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
- gap: 18px;
- padding: 30px;
-}
+    .btn { display: block; width: 100%; padding: 12px; text-align: center; background: var(--neon-pink); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; text-decoration: none; margin-top: 10px; }
+    .btn:hover { background: var(--neon-blue); box-shadow: 0 0 15px var(--neon-blue); }
+    .btn-cart-toggle { position: fixed; bottom: 20px; right: 20px; width: auto; padding: 15px 25px; z-index: 999; border-radius: 50px; }
 
-.product-card {
- background: #141418;
- padding: 15px;
- border-radius: 8px;
- text-align: center;
-}
-.product-card img {
- max-width: 100%;
- border-radius: 6px;
-}
-.product-card h4 { margin: 10px 0 6px; color: #00d4ff; }
-.product-card select { width: 60px; margin-top: 8px; }
+    /* Footer */
+    footer { background: black; padding: 40px 20px; text-align: center; margin-top: 50px; border-top: 2px solid var(--neon-blue); }
+    .footer-brand { font-size: 24px; color: var(--neon-blue); margin-bottom: 10px; }
+    .address-box { font-size: 14px; line-height: 1.6; color: #aaa; }
 
-.cart {
- position: fixed;
- right: 0;
- top: 0;
- width: 300px;
- height: 100%;
- background: #0d0d12;
- box-shadow: -2px 0 10px rgba(0,0,0,0.7);
- padding: 20px;
- transform: translateX(105%);
- transition: .3s ease;
-}
-.cart.open { transform: translateX(0); }
-.cart h2 { color: #ff2e88; }
-
-.cart-item {
- display: flex;
- justify-content: space-between;
- margin: 10px 0;
-}
-.cart-item span { font-size: 14px; }
-.cart-total { margin-top: 15px; font-weight: bold; color: #00ff99; }
-
-.checkout-form {
- margin-top: 15px;
- display: flex;
- flex-direction: column;
-}
-.checkout-form input, .checkout-form select {
- margin: 6px 0;
- padding: 8px;
- border-radius: 4px;
- border: none;
-}
-footer {
- text-align: center;
- padding: 15px;
- margin-top: 30px;
- background: black;
- font-size: 14px;
-}
+    input, select.form-control { width: 100%; padding: 10px; margin: 5px 0; background: #1a1a24; border: 1px solid #333; color: white; box-sizing: border-box; }
 </style>
 </head>
 <body>
 
 <header>
- <div class="header-title">Dien Späti</div>
- <div class="open">● 24/7 Geöffnet</div>
+    <div class="brand-top">DIEN SPÄTI</div>
+    <div style="color: var(--neon-green); font-size: 14px;">● 24/7 OPEN IN BERLIN</div>
 </header>
 
-<section class="hero">
- <h1>Späti 4 You – Online Shop (Demo)</h1>
- <p>Getränke, Snacks & Tabak jederzeit bestellen.</p>
- <div class="button" onclick="toggleCart()">🛒 Warenkorb öffnen</div>
-</section>
-
-<div class="offer">
- 🔥 ZAHL 2 NIMM 3* 🔥 <br>
- *Ausgenommen Tabakwaren
+<div class="offer-banner">
+    🔥 ZAHL 2, NIMM 3* 🔥 <br>
+    <small>*Gilt für alle Getränke & Snacks. Tabakwaren ausgeschlossen.</small>
 </div>
 
-<section class="products">
+<button class="btn btn-cart-toggle" onclick="toggleCart()">🛒 Warenkorb (<span id="count">0</span>)</button>
 
- <!-- Getränke -->
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=Fritz+Kola" alt="Fritz Kola">
-  <h4>Fritz Cola</h4>
-  <select onchange="updateCart('Fritz Cola', this.value)"> 
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-  </select>
- </div>
-
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=Coca+Cola" alt="Coca Cola">
-  <h4>Coca Cola</h4>
-  <select onchange="updateCart('Coca Cola', this.value)">
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-  </select>
- </div>
-
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=Volvic+Water" alt="Volvic Water">
-  <h4>Volvic Water</h4>
-  <select onchange="updateCart('Volvic Water', this.value)">
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-  </select>
- </div>
-
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=Spreequell+Water" alt="Spreequell Water">
-  <h4>Spreequell Water</h4>
-  <select onchange="updateCart('Spreequell Water', this.value)">
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-  </select>
- </div>
-
- <!-- Alcohol -->
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=Augustiner+Helles" alt="Augustiner Helles">
-  <h4>Augustiner Helles</h4>
-  <select onchange="updateCart('Augustiner Helles', this.value)">
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-  </select>
- </div>
-
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=Budweiser" alt="Budweiser">
-  <h4>Budweiser</h4>
-  <select onchange="updateCart('Budweiser', this.value)">
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-  </select>
- </div>
-
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=Corona" alt="Corona">
-  <h4>Corona</h4>
-  <select onchange="updateCart('Corona', this.value)">
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-  </select>
- </div>
-
- <!-- Tobacco -->
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=Marlboro" alt="Marlboro">
-  <h4>Marlboro</h4>
-  <select onchange="updateCart('Marlboro', this.value)">
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-  </select>
- </div>
-
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=Lucky+Strike" alt="Lucky Strike">
-  <h4>Lucky Strike</h4>
-  <select onchange="updateCart('Lucky Strike', this.value)">
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-  </select>
- </div>
-
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=American+Spirit" alt="American Spirit">
-  <h4>American Spirit</h4>
-  <select onchange="updateCart('American Spirit', this.value)">
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-  </select>
- </div>
-
- <!-- Snacks -->
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=Lays+Kessel" alt="Lays Kessel">
-  <h4>Lays Kessel</h4>
-  <select onchange="updateCart('Lays Kessel', this.value)">
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-  </select>
- </div>
-
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=Vipa+Mints" alt="Vipa Mints">
-  <h4>Vipa Mints</h4>
-  <select onchange="updateCart('Vipa Mints', this.value)">
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-  </select>
- </div>
-
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=Milka+Chocolate" alt="Milka Chocolate">
-  <h4>Milka Chocolate</h4>
-  <select onchange="updateCart('Milka Chocolate', this.value)">
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-  </select>
- </div>
-
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=Kinder+Chocolate" alt="Kinder Chocolate">
-  <h4>Kinder Chocolate</h4>
-  <select onchange="updateCart('Kinder Chocolate', this.value)">
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-  </select>
- </div>
-
- <!-- Laughing Gas -->
- <div class="product-card">
-  <img src="https://via.placeholder.com/150?text=Laughing+Gas" alt="Laughing Gas">
-  <h4>Laughing Gas</h4>
-  <select onchange="updateCart('Laughing Gas', this.value)">
-   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-  </select>
- </div>
-
-</section>
+<section class="products" id="productGrid">
+    </section>
 
 <div class="cart" id="cartPanel">
- <h2>🛒 Warenkorb</h2>
- <div id="cartItems"></div>
- <div class="cart-total" id="cartTotal"></div>
+    <button onclick="toggleCart()" style="background:none; border:none; color:white; cursor:pointer; float:right;">✕ Close</button>
+    <h2>🛒 Dein Warenkorb</h2>
+    <div id="cartItems"></div>
+    <div class="cart-total" id="cartTotal">Gesamt: 0.00€</div>
 
- <div class="checkout-form">
-  <h3>Zur Kasse</h3>
-  <input type="text" id="custName" placeholder="Name">
-  <input type="text" id="custAddr" placeholder="Lieferadresse">
-  <select id="deliveryTime">
-   <option value="sofort">So schnell wie möglich</option>
-   <option value="30min">In 30 Minuten</option>
-   <option value="1h">In 1 Stunde</option>
-  </select>
-  <div class="button" onclick="alert('Checkout Demo – Nicht Live')">✔️ Bestätigen</div>
- </div>
+    <div class="checkout-form">
+        <h3>Lieferdetails</h3>
+        <input type="text" id="custName" placeholder="Name">
+        <input type="text" id="custAddr" placeholder="Straße & Hausnummer">
+        <select id="deliveryTime" class="form-control">
+            <option value="ASAP">Sofort (20-40 Min)</option>
+            <option value="Later">Später</option>
+        </select>
+        <button class="btn" onclick="checkout()">✔️ JETZT BESTELLEN</button>
+    </div>
 </div>
 
 <footer>
- Späti 4 You – Berlin Locations:<br>
- Revaler Str. 99, 10245 Berlin | Warschauer Str. 86, 10243 Berlin
+    <div class="footer-brand">SPÄTI 4 YOU</div>
+    <div class="address-box">
+        <strong>Späti 4 You - Friedrichshain</strong><br>
+        Revaler Str. 99, 10245 Berlin<br><br>
+        <strong>Späti 4 You - Warschauer</strong><br>
+        Warschauer Str. 86, 10243 Berlin<br><br>
+        <em>Qualität & Schnelligkeit seit Jahren.</em>
+    </div>
 </footer>
 
 <script>
+const products = [
+    { name: "Fritz Kola (Classic)", price: 2.50, cat: "Getränke", img: "https://via.placeholder.com/150?text=Fritz+Kola" },
+    { name: "Fritz Kola (Ohne Zucker)", price: 2.50, cat: "Getränke", img: "https://via.placeholder.com/150?text=Fritz+Sugarfree" },
+    { name: "Coca Cola Classic", price: 2.30, cat: "Getränke", img: "https://via.placeholder.com/150?text=Coke" },
+    { name: "Coca Cola Zero", price: 2.30, cat: "Getränke", img: "https://via.placeholder.com/150?text=Coke+Zero" },
+    { name: "Afri Cola", price: 2.40, cat: "Getränke", img: "https://via.placeholder.com/150?text=Afri+Cola" },
+    { name: "Volvic Water 1.5L", price: 1.80, cat: "Getränke", img: "https://via.placeholder.com/150?text=Volvic" },
+    { name: "Spreequell Classic", price: 1.50, cat: "Getränke", img: "https://via.placeholder.com/150?text=Spreequell" },
+    
+    { name: "Augustiner Helles", price: 2.10, cat: "Alkohol", img: "https://via.placeholder.com/150?text=Augustiner" },
+    { name: "Budweiser", price: 2.20, cat: "Alkohol", img: "https://via.placeholder.com/150?text=Budweiser" },
+    { name: "Heineken", price: 2.40, cat: "Alkohol", img: "https://via.placeholder.com/150?text=Heineken" },
+    { name: "Corona Extra", price: 2.90, cat: "Alkohol", img: "https://via.placeholder.com/150?text=Corona" },
+    
+    { name: "Marlboro Red", price: 8.20, cat: "Tabak", img: "https://via.placeholder.com/150?text=Marlboro" },
+    { name: "Davidoff Gold", price: 8.50, cat: "Tabak", img: "https://via.placeholder.com/150?text=Davidoff" },
+    { name: "Lucky Strike", price: 8.00, cat: "Tabak", img: "https://via.placeholder.com/150?text=Lucky+Strike" },
+    { name: "American Spirit Blue", price: 8.50, cat: "Tabak", img: "https://via.placeholder.com/150?text=Spirit+Cigs" },
+    { name: "American Spirit Tabak (Pouch)", price: 12.50, cat: "Tabak", img: "https://via.placeholder.com/150?text=Spirit+Tabak" },
+    
+    { name: "Lays Kessel Chips", price: 2.80, cat: "Snacks", img: "https://via.placeholder.com/150?text=Lays" },
+    { name: "Vipa Mints", price: 1.50, cat: "Snacks", img: "https://via.placeholder.com/150?text=Vipa" },
+    { name: "Milka Alpenmilch", price: 1.40, cat: "Snacks", img: "https://via.placeholder.com/150?text=Milka" },
+    { name: "Kinder Schokolade", price: 1.40, cat: "Snacks", img: "https://via.placeholder.com/150?text=Kinder" },
+    
+    { name: "Lachgas (Fast Gas 640g)", price: 29.90, cat: "Special", img: "https://via.placeholder.com/150?text=Lachgas" }
+];
+
 let cart = {};
 
-function updateCart(product, qty) {
- if (qty > 0) cart[product] = parseInt(qty);
- else delete cart[product];
- drawCart();
+function initProducts() {
+    const grid = document.getElementById('productGrid');
+    let currentCat = "";
+    
+    products.forEach(p => {
+        if(p.cat !== currentCat) {
+            currentCat = p.cat;
+            grid.innerHTML += `<h3 class="category-title">${currentCat}</h3>`;
+        }
+        grid.innerHTML += `
+            <div class="product-card">
+                <img src="${p.img}" alt="${p.name}">
+                <h4>${p.name}</h4>
+                <span class="price-tag">${p.price.toFixed(2)}€</span>
+                <select onchange="updateCart('${p.name}', this.value)">
+                    ${[0,1,2,3,4,5,6,7,8,9,10].map(n => `<option value="${n}">${n}</option>`).join('')}
+                </select>
+            </div>`;
+    });
+}
+
+function updateCart(name, qty) {
+    qty = parseInt(qty);
+    if(qty > 0) cart[name] = qty;
+    else delete cart[name];
+    drawCart();
 }
 
 function drawCart() {
- let panel = document.getElementById("cartItems");
- panel.innerHTML = "";
- let totalItems = 0;
- for (let p in cart) {
-  panel.innerHTML += `<div class="cart-item"><span>${p}</span><span>${cart[p]}</span></div>`;
-  totalItems += cart[p];
- }
- document.getElementById("cartTotal").innerText = "Artikel gesamt: " + totalItems;
+    const panel = document.getElementById("cartItems");
+    panel.innerHTML = "";
+    let total = 0;
+    let itemCount = 0;
+
+    for (let name in cart) {
+        const product = products.find(p => p.name === name);
+        let qty = cart[name];
+        let price = product.price;
+        
+        // Apply "Buy 2 Get 3" discount (not for Tobacco)
+        let finalPrice = qty * price;
+        if(product.cat !== "Tabak" && qty >= 3) {
+            let freebies = Math.floor(qty / 3);
+            finalPrice = (qty - freebies) * price;
+        }
+
+        total += finalPrice;
+        itemCount += qty;
+        panel.innerHTML += `
+            <div class="cart-item">
+                <span>${name} (x${qty})</span>
+                <span>${finalPrice.toFixed(2)}€</span>
+            </div>`;
+    }
+    document.getElementById("cartTotal").innerText = `Gesamt: ${total.toFixed(2)}€`;
+    document.getElementById("count").innerText = itemCount;
 }
 
 function toggleCart() {
- document.getElementById("cartPanel").classList.toggle("open");
+    document.getElementById("cartPanel").classList.toggle("open");
 }
+
+function checkout() {
+    const name = document.getElementById('custName').value;
+    if(!name || Object.keys(cart).length === 0) {
+        alert("Bitte gib einen Namen ein und fülle den Warenkorb!");
+        return;
+    }
+    alert(`Danke ${name}! Deine Bestellung wurde an Späti 4 You übermittelt.\nGesamtsumme: ${document.getElementById("cartTotal").innerText}`);
+}
+
+initProducts();
 </script>
 
 </body>

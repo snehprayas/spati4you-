@@ -3,158 +3,312 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Späti 4 You – 24/7</title>
-
+<title>Dien Späti – Späti 4 You</title>
 <style>
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #0b0b0f;
-    color: white;
+ margin: 0;
+ font-family: Arial, sans-serif;
+ background: #0b0b0f;
+ color: white;
 }
-
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: black;
-    position: sticky;
-    top: 0;
+ background: black;
+ padding: 15px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ position: sticky;
+ top: 0;
 }
-
-.logo {
-    font-size: 24px;
-    color: #ff2e88;
-    text-shadow: 0 0 10px #ff2e88;
-}
-
-.open-badge {
-    color: #00ff99;
-    font-weight: bold;
-}
+.header-title { font-size: 24px; color: #ff2e88; text-shadow: 0 0 10px #ff2e88; }
+header .open { color: #00ff99; font-weight: bold; }
 
 .hero {
-    text-align: center;
-    padding: 80px 20px;
+ text-align: center;
+ padding: 60px 20px;
 }
-
-.hero h1 {
-    font-size: 40px;
-    color: #ff2e88;
-    text-shadow: 0 0 20px #ff2e88;
-}
-
-.hero p {
-    font-size: 18px;
-    margin-top: 10px;
-}
+.hero h1 { font-size: 38px; color: #ff2e88; text-shadow: 0 0 20px #ff2e88; }
+.hero p { font-size: 18px; margin: 10px 0; }
 
 .button {
-    display: inline-block;
-    margin: 20px 10px;
-    padding: 12px 25px;
-    background: #ff2e88;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    box-shadow: 0 0 15px #ff2e88;
+ display: inline-block;
+ padding: 12px 20px;
+ background: #ff2e88;
+ color: white;
+ border-radius: 5px;
+ text-decoration: none;
+ margin: 8px;
+ box-shadow: 0 0 15px #ff2e88;
+ cursor: pointer;
 }
-
-.button:hover {
-    background: #00d4ff;
-    box-shadow: 0 0 15px #00d4ff;
-}
+.button:hover { background: #00d4ff; box-shadow: 0 0 15px #00d4ff; }
 
 .offer {
-    background: #1a1a1f;
-    text-align: center;
-    padding: 40px 20px;
-    font-size: 24px;
-    color: #ff2e88;
-    text-shadow: 0 0 15px #ff2e88;
+ text-align: center;
+ background: #1a1a24;
+ padding: 30px 15px;
+ font-size: 22px;
+ color: #ff2e88;
+ text-shadow: 0 0 15px #ff2e88;
 }
 
 .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 40px 20px;
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+ gap: 18px;
+ padding: 30px;
 }
 
-.card {
-    background: #141419;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 0 10px #222;
+.product-card {
+ background: #141418;
+ padding: 15px;
+ border-radius: 8px;
+ text-align: center;
 }
-
-.card h3 {
-    color: #00d4ff;
+.product-card img {
+ max-width: 100%;
+ border-radius: 6px;
 }
+.product-card h4 { margin: 10px 0 6px; color: #00d4ff; }
+.product-card select { width: 60px; margin-top: 8px; }
 
-.footer {
-    background: black;
-    text-align: center;
-    padding: 20px;
-    font-size: 14px;
+.cart {
+ position: fixed;
+ right: 0;
+ top: 0;
+ width: 300px;
+ height: 100%;
+ background: #0d0d12;
+ box-shadow: -2px 0 10px rgba(0,0,0,0.7);
+ padding: 20px;
+ transform: translateX(105%);
+ transition: .3s ease;
+}
+.cart.open { transform: translateX(0); }
+.cart h2 { color: #ff2e88; }
+
+.cart-item {
+ display: flex;
+ justify-content: space-between;
+ margin: 10px 0;
+}
+.cart-item span { font-size: 14px; }
+.cart-total { margin-top: 15px; font-weight: bold; color: #00ff99; }
+
+.checkout-form {
+ margin-top: 15px;
+ display: flex;
+ flex-direction: column;
+}
+.checkout-form input, .checkout-form select {
+ margin: 6px 0;
+ padding: 8px;
+ border-radius: 4px;
+ border: none;
+}
+footer {
+ text-align: center;
+ padding: 15px;
+ margin-top: 30px;
+ background: black;
+ font-size: 14px;
 }
 </style>
 </head>
-
 <body>
 
 <header>
-    <div class="logo">Späti 4 You</div>
-    <div class="open-badge">● 24/7 Geöffnet</div>
+ <div class="header-title">Dien Späti</div>
+ <div class="open">● 24/7 Geöffnet</div>
 </header>
 
 <section class="hero">
-    <h1>Dein Späti – Tag & Nacht</h1>
-    <p>Getränke, Snacks & Tabak jederzeit online bestellen.</p>
-    <a href="#" class="button">Jetzt bestellen</a>
-    <a href="#" class="button">Lieferung prüfen</a>
+ <h1>Späti 4 You – Online Shop (Demo)</h1>
+ <p>Getränke, Snacks & Tabak jederzeit bestellen.</p>
+ <div class="button" onclick="toggleCart()">🛒 Warenkorb öffnen</div>
 </section>
 
-<section class="offer">
-    🔥 ZAHL 2 NIMM 3* 🔥 <br>
-    <small>*Ausgenommen Tabakwaren</small>
-</section>
+<div class="offer">
+ 🔥 ZAHL 2 NIMM 3* 🔥 <br>
+ *Ausgenommen Tabakwaren
+</div>
 
 <section class="products">
-    <div class="card">
-        <h3>🍺 Alkohol</h3>
-        <p>Bier, Wein & Spirituosen</p>
-    </div>
-    <div class="card">
-        <h3>🚬 Tabakwaren</h3>
-        <p>Zigaretten & Vapes</p>
-    </div>
-    <div class="card">
-        <h3>🥤 Getränke</h3>
-        <p>Softdrinks & Energy</p>
-    </div>
-    <div class="card">
-        <h3>🍫 Snacks</h3>
-        <p>Chips & Süßigkeiten</p>
-    </div>
+
+ <!-- Getränke -->
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=Fritz+Kola" alt="Fritz Kola">
+  <h4>Fritz Cola</h4>
+  <select onchange="updateCart('Fritz Cola', this.value)"> 
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+  </select>
+ </div>
+
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=Coca+Cola" alt="Coca Cola">
+  <h4>Coca Cola</h4>
+  <select onchange="updateCart('Coca Cola', this.value)">
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+  </select>
+ </div>
+
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=Volvic+Water" alt="Volvic Water">
+  <h4>Volvic Water</h4>
+  <select onchange="updateCart('Volvic Water', this.value)">
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+  </select>
+ </div>
+
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=Spreequell+Water" alt="Spreequell Water">
+  <h4>Spreequell Water</h4>
+  <select onchange="updateCart('Spreequell Water', this.value)">
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+  </select>
+ </div>
+
+ <!-- Alcohol -->
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=Augustiner+Helles" alt="Augustiner Helles">
+  <h4>Augustiner Helles</h4>
+  <select onchange="updateCart('Augustiner Helles', this.value)">
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+  </select>
+ </div>
+
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=Budweiser" alt="Budweiser">
+  <h4>Budweiser</h4>
+  <select onchange="updateCart('Budweiser', this.value)">
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+  </select>
+ </div>
+
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=Corona" alt="Corona">
+  <h4>Corona</h4>
+  <select onchange="updateCart('Corona', this.value)">
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+  </select>
+ </div>
+
+ <!-- Tobacco -->
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=Marlboro" alt="Marlboro">
+  <h4>Marlboro</h4>
+  <select onchange="updateCart('Marlboro', this.value)">
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+  </select>
+ </div>
+
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=Lucky+Strike" alt="Lucky Strike">
+  <h4>Lucky Strike</h4>
+  <select onchange="updateCart('Lucky Strike', this.value)">
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+  </select>
+ </div>
+
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=American+Spirit" alt="American Spirit">
+  <h4>American Spirit</h4>
+  <select onchange="updateCart('American Spirit', this.value)">
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+  </select>
+ </div>
+
+ <!-- Snacks -->
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=Lays+Kessel" alt="Lays Kessel">
+  <h4>Lays Kessel</h4>
+  <select onchange="updateCart('Lays Kessel', this.value)">
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+  </select>
+ </div>
+
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=Vipa+Mints" alt="Vipa Mints">
+  <h4>Vipa Mints</h4>
+  <select onchange="updateCart('Vipa Mints', this.value)">
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+  </select>
+ </div>
+
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=Milka+Chocolate" alt="Milka Chocolate">
+  <h4>Milka Chocolate</h4>
+  <select onchange="updateCart('Milka Chocolate', this.value)">
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+  </select>
+ </div>
+
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=Kinder+Chocolate" alt="Kinder Chocolate">
+  <h4>Kinder Chocolate</h4>
+  <select onchange="updateCart('Kinder Chocolate', this.value)">
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+  </select>
+ </div>
+
+ <!-- Laughing Gas -->
+ <div class="product-card">
+  <img src="https://via.placeholder.com/150?text=Laughing+Gas" alt="Laughing Gas">
+  <h4>Laughing Gas</h4>
+  <select onchange="updateCart('Laughing Gas', this.value)">
+   <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+  </select>
+ </div>
+
 </section>
 
-<section class="hero">
-    <h2>Wir liefern direkt zu dir</h2>
-    <p>Schnelle Lieferung · Sichere Online-Zahlung · Vorbestellung möglich</p>
-</section>
+<div class="cart" id="cartPanel">
+ <h2>🛒 Warenkorb</h2>
+ <div id="cartItems"></div>
+ <div class="cart-total" id="cartTotal"></div>
 
-<section class="hero">
-    <h2>Besuche uns vor Ort – 24/7</h2>
-    <p>Musterstraße 12 · Deine Stadt</p>
-    <p>Tel: 0123 456789</p>
-</section>
-
-<div class="footer">
-    © 2026 Späti 4 You – Rund um die Uhr geöffnet
+ <div class="checkout-form">
+  <h3>Zur Kasse</h3>
+  <input type="text" id="custName" placeholder="Name">
+  <input type="text" id="custAddr" placeholder="Lieferadresse">
+  <select id="deliveryTime">
+   <option value="sofort">So schnell wie möglich</option>
+   <option value="30min">In 30 Minuten</option>
+   <option value="1h">In 1 Stunde</option>
+  </select>
+  <div class="button" onclick="alert('Checkout Demo – Nicht Live')">✔️ Bestätigen</div>
+ </div>
 </div>
+
+<footer>
+ Späti 4 You – Berlin Locations:<br>
+ Revaler Str. 99, 10245 Berlin | Warschauer Str. 86, 10243 Berlin
+</footer>
+
+<script>
+let cart = {};
+
+function updateCart(product, qty) {
+ if (qty > 0) cart[product] = parseInt(qty);
+ else delete cart[product];
+ drawCart();
+}
+
+function drawCart() {
+ let panel = document.getElementById("cartItems");
+ panel.innerHTML = "";
+ let totalItems = 0;
+ for (let p in cart) {
+  panel.innerHTML += `<div class="cart-item"><span>${p}</span><span>${cart[p]}</span></div>`;
+  totalItems += cart[p];
+ }
+ document.getElementById("cartTotal").innerText = "Artikel gesamt: " + totalItems;
+}
+
+function toggleCart() {
+ document.getElementById("cartPanel").classList.toggle("open");
+}
+</script>
 
 </body>
 </html>
